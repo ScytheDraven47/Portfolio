@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="styles.css">
+		<script src="angular.min.js"></script>
+		<script src="reg_cor.js"></script>
+		<title>Regression &amp; Correlation &ndash; Assignment 1</title>
+	</head>
+	
+	<body ng-app="regCor" ng-controller="regCorController">
+		<h1>Regression &amp; Correlation</h1>
+		<hr>
+		<input class="button" type="file" value="File 1" id="file1"/>
+		<input class="text" type="text" placeholder="Estimate value (Xk)" id="Xk"/>
+		<input class="button" type="button" value="Calculate and View" ng-click="executeAll()"/>
+		<hr>
+		<table>
+			<thead>
+				<tr>
+					<th>Test</th>
+					<th colspan = 2>Value</th>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Mean</td>
+					<td>Std. Deviation</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in fileData">
+					<td>Table</td>
+					<td>{{data.mean}}</td>
+					<td>{{data.stdDev}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<table>
+			<thead>
+				<tr>
+					<th>Test</th>
+					<th colspan = 6>Results</th>
+				</tr>
+				<tr class="unique">
+					<td></td>
+					<td>x<sub>k</sub></td>
+					<td>&#946;<sub>1</sub></td>
+					<td>&#946;<sub>0</sub></td>
+					<td>r<sub>xy</sub></td>
+					<td>r<sup>2</sup></td>
+					<td>y<sub>k</sub></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="result in regCorResults">
+					<td>Tables</td>
+					<td>{{result.Xk | number:4}}</td>
+					<td>{{result.beta1 | number:4}}</td>
+					<td>{{result.beta0 | number:4}}</td>
+					<td>{{result.Rxy | number:4}}</td>
+					<td>{{result.Rsq | number:4}}</td>
+					<td>{{result.Yk | number:4}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<table>
+			<thead>
+				<tr>
+					<th ng-repeat="i in getNumber(number)">{{$index+1}}</th>
+					<th></th>
+					<th>x</th>
+					<th>x&sup2;</th>
+					<th>y</th>
+					<th>y&sup2;</th>
+					<th>x*y</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="numFile in tableFileData">
+					<td></td>
+					<td ng-repeat="num in numFile">{{num}}</td>
+				</tr>
+				<tr >
+				<th>Sums</th>
+					<td ng-repeat="data in sums">{{data}}</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<script>
+			document.getElementById('file1').addEventListener('change', fileChangedHandler, false);
+		</script>
+	</body>
+</html>

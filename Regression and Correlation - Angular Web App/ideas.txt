@@ -1,0 +1,18 @@
+Have global array of "filedata"
+
+Puts all data into filedata, ie
+[
+	['fileInput1=[1,2,3,4,5,6,7,8,9]' , 'mean=5' , 'stdDev=2.5'],
+	['fileInput2=[1,2,3,4,5,6,7,8,9]' , 'mean=5' , 'stdDev=2.5']
+]
+
+Allows reusability with possible extra tables
+
+for(i=0 , i<filedata.length , i++){
+	filedata[i[1]]
+}
+
+
+ng-repeat="data in fileData"
+{{data[0].rawData}} - {{data[1].rawData}}
+
